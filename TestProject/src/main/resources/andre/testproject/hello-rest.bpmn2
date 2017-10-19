@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_lXFowK_SEeexjfkQxJEKIg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" exporter="jBPM Designer" exporterVersion="6.2.0" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:itemDefinition id="_httpstatusItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="_jsonstringItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="_requestResponseItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_parsedJSONItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_firstNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_lastNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_TaskNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_UrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_MethodInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_AcceptInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_ContentTypeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_StatusOutputXItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="__77387FD6-006D-4A69-BC30-1F47775867B3_ResultOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__16EFC86D-9BDC-48C9-A41D-36AD2CF0A985_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:process id="PhilREST.hello-rest-task-service" drools:packageName="org.jbpm" drools:version="39.0" name="hello-rest-task-service" isExecutable="true">
+    <bpmn2:property id="httpstatus" itemSubjectRef="_httpstatusItem"/>
+    <bpmn2:property id="jsonstring" itemSubjectRef="_jsonstringItem"/>
+    <bpmn2:property id="requestResponse" itemSubjectRef="_requestResponseItem"/>
+    <bpmn2:property id="parsedJSON" itemSubjectRef="_parsedJSONItem"/>
+    <bpmn2:property id="firstName" itemSubjectRef="_firstNameItem"/>
+    <bpmn2:property id="lastName" itemSubjectRef="_lastNameItem"/>
+    <bpmn2:startEvent id="_2C888654-FBD8-455E-90AB-F290DC03187A" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="Start">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Start]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:documentation id="_lXFowa_SEeexjfkQxJEKIg"><![CDATA[function isJson(item) {\n    item = typeof item !== "string"\n        ? JSON.stringify(item)\n        : item;\n\n    try {\n        item = JSON.parse(item);\n    } catch (e) {\n        return false;\n    }\n\n    if (typeof item === "object" && item !== null) {\n        return true;\n    }\n\n    return false;\n}\nvar myArray = JSON.parse(requestResponse);\nkcontext.setVariable("IsParsedArray", Array.isArray(myArray));\nkcontext.setVariable("IsResponseArray", Array.isArray(requestResponse));\nkcontext.setVariable("IsResponseJSON", isJson(requestResponse));\nkcontext.setVariable("IsParsedJSON", isJson(myArray));\nkcontext.setVariable("TypeOfMyArray", typeof(myArray));\n\n//kcontext.setVariable("myArrayStr", myArray);\nfor (var keyVar in myArray) {\n    if (keyVar = "id")\n    {\n        var varid = myArray[keyVar];\n    }\n\n    if (keyVar = "title")\n    {\n        var vartitle = myArray[keyVar];\n    }\n    if (keyVar = "author")\n    {\n        var varauthor = myArray[keyVar];\n    }\n//  kcontext.setVariable(keyVar, myArray[keyVar]);\n}\n\n]]></bpmn2:documentation>
+      <bpmn2:outgoing>_43FDA188-C8B4-48C6-8754-E357223642EA</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="_77387FD6-006D-4A69-BC30-1F47775867B3" drools:selectable="true" drools:taskName="Rest" color:background-color="#fafad2" color:border-color="#000000" color:color="#000000" name="T3: Perform the REST Request">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T3: Perform the REST Request]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_C36001A6-CCCE-4F2B-8517-A29804E61053</bpmn2:incoming>
+      <bpmn2:outgoing>_75F82D22-CB18-414C-9AF8-351711DCBFDB</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_lXFowq_SEeexjfkQxJEKIg">
+        <bpmn2:dataInput id="_77387FD6-006D-4A69-BC30-1F47775867B3_TaskNameInputX" drools:dtype="String" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_77387FD6-006D-4A69-BC30-1F47775867B3_UrlInputX" drools:dtype="String" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_UrlInputXItem" name="Url"/>
+        <bpmn2:dataInput id="_77387FD6-006D-4A69-BC30-1F47775867B3_MethodInputX" drools:dtype="String" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_MethodInputXItem" name="Method"/>
+        <bpmn2:dataInput id="_77387FD6-006D-4A69-BC30-1F47775867B3_AcceptInputX" drools:dtype="String" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_AcceptInputXItem" name="Accept"/>
+        <bpmn2:dataInput id="_77387FD6-006D-4A69-BC30-1F47775867B3_ContentTypeInputX" drools:dtype="String" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_ContentTypeInputXItem" name="ContentType"/>
+        <bpmn2:dataInput id="_77387FD6-006D-4A69-BC30-1F47775867B3_ContentInputX" drools:dtype="Object" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_ContentInputXItem" name="Content"/>
+        <bpmn2:dataOutput id="_77387FD6-006D-4A69-BC30-1F47775867B3_StatusOutputX" drools:dtype="Integer" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_StatusOutputXItem" name="Status"/>
+        <bpmn2:dataOutput id="_77387FD6-006D-4A69-BC30-1F47775867B3_ResultOutputX" drools:dtype="String" itemSubjectRef="__77387FD6-006D-4A69-BC30-1F47775867B3_ResultOutputXItem" name="Result"/>
+        <bpmn2:inputSet id="_lXFow6_SEeexjfkQxJEKIg">
+          <bpmn2:dataInputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_UrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_MethodInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_AcceptInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_ContentTypeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_ContentInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_lXFoxK_SEeexjfkQxJEKIg">
+          <bpmn2:dataOutputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_StatusOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_77387FD6-006D-4A69-BC30-1F47775867B3_ResultOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_lXFoxa_SEeexjfkQxJEKIg">
+        <bpmn2:targetRef>_77387FD6-006D-4A69-BC30-1F47775867B3_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_lXFoxq_SEeexjfkQxJEKIg">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_lXFox6_SEeexjfkQxJEKIg">Rest</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_lXFoyK_SEeexjfkQxJEKIg">_77387FD6-006D-4A69-BC30-1F47775867B3_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_lXFoya_SEeexjfkQxJEKIg">
+        <bpmn2:targetRef>_77387FD6-006D-4A69-BC30-1F47775867B3_UrlInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_lXFoyq_SEeexjfkQxJEKIg">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_lXFoy6_SEeexjfkQxJEKIg"><![CDATA[http://localhost:3000/api/people]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_lXFozK_SEeexjfkQxJEKIg">_77387FD6-006D-4A69-BC30-1F47775867B3_UrlInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_lXFoza_SEeexjfkQxJEKIg">
+        <bpmn2:targetRef>_77387FD6-006D-4A69-BC30-1F47775867B3_MethodInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_lXFozq_SEeexjfkQxJEKIg">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_lXFoz6_SEeexjfkQxJEKIg"><![CDATA[POST]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_lXFo0K_SEeexjfkQxJEKIg">_77387FD6-006D-4A69-BC30-1F47775867B3_MethodInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_lXFo0a_SEeexjfkQxJEKIg">
+        <bpmn2:targetRef>_77387FD6-006D-4A69-BC30-1F47775867B3_AcceptInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_lXFo0q_SEeexjfkQxJEKIg">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_lXFo06_SEeexjfkQxJEKIg"><![CDATA[application/json]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_lXFo1K_SEeexjfkQxJEKIg">_77387FD6-006D-4A69-BC30-1F47775867B3_AcceptInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_lXFo1a_SEeexjfkQxJEKIg">
+        <bpmn2:targetRef>_77387FD6-006D-4A69-BC30-1F47775867B3_ContentTypeInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_lXFo1q_SEeexjfkQxJEKIg">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_lXFo16_SEeexjfkQxJEKIg"><![CDATA[application/json]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_lXFo2K_SEeexjfkQxJEKIg">_77387FD6-006D-4A69-BC30-1F47775867B3_ContentTypeInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_lXFo2a_SEeexjfkQxJEKIg">
+        <bpmn2:sourceRef>jsonstring</bpmn2:sourceRef>
+        <bpmn2:targetRef>_77387FD6-006D-4A69-BC30-1F47775867B3_ContentInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_lXFo2q_SEeexjfkQxJEKIg">
+        <bpmn2:sourceRef>_77387FD6-006D-4A69-BC30-1F47775867B3_StatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>httpstatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_lXFo26_SEeexjfkQxJEKIg">
+        <bpmn2:sourceRef>_77387FD6-006D-4A69-BC30-1F47775867B3_ResultOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>requestResponse</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:scriptTask id="_C526B286-BB8F-412D-8257-2910C7A22A30" drools:selectable="true" color:background-color="#fafad2" color:border-color="#000000" color:color="#000000" name="T1: Create Request Body" scriptFormat="http://www.javascript.com/javascript">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T1: Create Request Body]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_43FDA188-C8B4-48C6-8754-E357223642EA</bpmn2:incoming>
+      <bpmn2:outgoing>_B351951A-5E14-43FB-BC8D-595F2308CF21</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[var obj = {"firstName":"bob","lastName":"jones"};
+var jsontmp = JSON.stringify(obj);
+var parsedJSONtmp = JSON.parse(jsontmp);
+kcontext.setVariable("jsonstring", jsontmp);
+//kcontext.setVariable("parsedJSON", parsedJSONtmp);]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985" drools:selectable="true" color:background-color="#fafad2" color:border-color="#000000" color:color="#000000" name="T2: Prints the REST response" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T2: Prints the REST response]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_B351951A-5E14-43FB-BC8D-595F2308CF21</bpmn2:incoming>
+      <bpmn2:outgoing>_C36001A6-CCCE-4F2B-8517-A29804E61053</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_lXFo3K_SEeexjfkQxJEKIg">
+        <bpmn2:dataInput id="_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985_SkippableInputX" drools:dtype="Object" itemSubjectRef="__16EFC86D-9BDC-48C9-A41D-36AD2CF0A985_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:inputSet id="_lXFo3a_SEeexjfkQxJEKIg">
+          <bpmn2:dataInputRefs>_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_lXFo3q_SEeexjfkQxJEKIg"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:script><![CDATA[System.out.println("Parsed JSON: " + parsedJSON);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_43FDA188-C8B4-48C6-8754-E357223642EA" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_2C888654-FBD8-455E-90AB-F290DC03187A" targetRef="_C526B286-BB8F-412D-8257-2910C7A22A30">
+      <bpmn2:documentation id="_lXFo36_SEeexjfkQxJEKIg"><![CDATA[function isJson(item) {\n    item = typeof item !== "string"\n        ? JSON.stringify(item)\n        : item;\n\n    try {\n        item = JSON.parse(item);\n    } catch (e) {\n        return false;\n    }\n\n    if (typeof item === "object" && item !== null) {\n        return true;\n    }\n\n    return false;\n}\nvar myArray = JSON.parse(requestResponse);\nkcontext.setVariable("IsParsedArray", Array.isArray(myArray));\nkcontext.setVariable("IsResponseArray", Array.isArray(requestResponse));\nkcontext.setVariable("IsResponseJSON", isJson(requestResponse));\nkcontext.setVariable("IsParsedJSON", isJson(myArray));\nkcontext.setVariable("TypeOfMyArray", typeof(myArray));\n\n//kcontext.setVariable("myArrayStr", myArray);\nfor (var keyVar in myArray) {\n    if (keyVar = "id")\n    {\n        var varid = myArray[keyVar];\n    }\n\n    if (keyVar = "title")\n    {\n        var vartitle = myArray[keyVar];\n    }\n    if (keyVar = "author")\n    {\n        var varauthor = myArray[keyVar];\n    }\n//  kcontext.setVariable(keyVar, myArray[keyVar]);\n}\n\n]]></bpmn2:documentation>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_B351951A-5E14-43FB-BC8D-595F2308CF21" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_C526B286-BB8F-412D-8257-2910C7A22A30" targetRef="_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985">
+      <bpmn2:documentation id="_lXFo4K_SEeexjfkQxJEKIg"><![CDATA[function isJson(item) {\n    item = typeof item !== "string"\n        ? JSON.stringify(item)\n        : item;\n\n    try {\n        item = JSON.parse(item);\n    } catch (e) {\n        return false;\n    }\n\n    if (typeof item === "object" && item !== null) {\n        return true;\n    }\n\n    return false;\n}\nvar myArray = JSON.parse(requestResponse);\nkcontext.setVariable("IsParsedArray", Array.isArray(myArray));\nkcontext.setVariable("IsResponseArray", Array.isArray(requestResponse));\nkcontext.setVariable("IsResponseJSON", isJson(requestResponse));\nkcontext.setVariable("IsParsedJSON", isJson(myArray));\nkcontext.setVariable("TypeOfMyArray", typeof(myArray));\n\n//kcontext.setVariable("myArrayStr", myArray);\nfor (var keyVar in myArray) {\n    if (keyVar = "id")\n    {\n        var varid = myArray[keyVar];\n    }\n\n    if (keyVar = "title")\n    {\n        var vartitle = myArray[keyVar];\n    }\n    if (keyVar = "author")\n    {\n        var varauthor = myArray[keyVar];\n    }\n//  kcontext.setVariable(keyVar, myArray[keyVar]);\n}\n\n]]></bpmn2:documentation>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_C36001A6-CCCE-4F2B-8517-A29804E61053" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985" targetRef="_77387FD6-006D-4A69-BC30-1F47775867B3">
+      <bpmn2:documentation id="_lXFo4a_SEeexjfkQxJEKIg"><![CDATA[function isJson(item) {\n    item = typeof item !== "string"\n        ? JSON.stringify(item)\n        : item;\n\n    try {\n        item = JSON.parse(item);\n    } catch (e) {\n        return false;\n    }\n\n    if (typeof item === "object" && item !== null) {\n        return true;\n    }\n\n    return false;\n}\nvar myArray = JSON.parse(requestResponse);\nkcontext.setVariable("IsParsedArray", Array.isArray(myArray));\nkcontext.setVariable("IsResponseArray", Array.isArray(requestResponse));\nkcontext.setVariable("IsResponseJSON", isJson(requestResponse));\nkcontext.setVariable("IsParsedJSON", isJson(myArray));\nkcontext.setVariable("TypeOfMyArray", typeof(myArray));\n\n//kcontext.setVariable("myArrayStr", myArray);\nfor (var keyVar in myArray) {\n    if (keyVar = "id")\n    {\n        var varid = myArray[keyVar];\n    }\n\n    if (keyVar = "title")\n    {\n        var vartitle = myArray[keyVar];\n    }\n    if (keyVar = "author")\n    {\n        var varauthor = myArray[keyVar];\n    }\n//  kcontext.setVariable(keyVar, myArray[keyVar]);\n}\n\n]]></bpmn2:documentation>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_75F82D22-CB18-414C-9AF8-351711DCBFDB" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_77387FD6-006D-4A69-BC30-1F47775867B3" targetRef="_470B9BBC-2483-45B3-AF2B-5B2F98814E55">
+      <bpmn2:documentation id="_lXFo4q_SEeexjfkQxJEKIg"><![CDATA[function isJson(item) {\n    item = typeof item !== "string"\n        ? JSON.stringify(item)\n        : item;\n\n    try {\n        item = JSON.parse(item);\n    } catch (e) {\n        return false;\n    }\n\n    if (typeof item === "object" && item !== null) {\n        return true;\n    }\n\n    return false;\n}\nvar myArray = JSON.parse(requestResponse);\nkcontext.setVariable("IsParsedArray", Array.isArray(myArray));\nkcontext.setVariable("IsResponseArray", Array.isArray(requestResponse));\nkcontext.setVariable("IsResponseJSON", isJson(requestResponse));\nkcontext.setVariable("IsParsedJSON", isJson(myArray));\nkcontext.setVariable("TypeOfMyArray", typeof(myArray));\n\n//kcontext.setVariable("myArrayStr", myArray);\nfor (var keyVar in myArray) {\n    if (keyVar = "id")\n    {\n        var varid = myArray[keyVar];\n    }\n\n    if (keyVar = "title")\n    {\n        var vartitle = myArray[keyVar];\n    }\n    if (keyVar = "author")\n    {\n        var varauthor = myArray[keyVar];\n    }\n//  kcontext.setVariable(keyVar, myArray[keyVar]);\n}\n\n]]></bpmn2:documentation>
+    </bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="_10762D76-EEAC-448F-A761-F1BA7E3E9EF4" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="End">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[End]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:documentation id="_lXFo46_SEeexjfkQxJEKIg"><![CDATA[function isJson(item) {\n    item = typeof item !== "string"\n        ? JSON.stringify(item)\n        : item;\n\n    try {\n        item = JSON.parse(item);\n    } catch (e) {\n        return false;\n    }\n\n    if (typeof item === "object" && item !== null) {\n        return true;\n    }\n\n    return false;\n}\nvar myArray = JSON.parse(requestResponse);\nkcontext.setVariable("IsParsedArray", Array.isArray(myArray));\nkcontext.setVariable("IsResponseArray", Array.isArray(requestResponse));\nkcontext.setVariable("IsResponseJSON", isJson(requestResponse));\nkcontext.setVariable("IsParsedJSON", isJson(myArray));\nkcontext.setVariable("TypeOfMyArray", typeof(myArray));\n\n//kcontext.setVariable("myArrayStr", myArray);\nfor (var keyVar in myArray) {\n    if (keyVar = "id")\n    {\n        var varid = myArray[keyVar];\n    }\n\n    if (keyVar = "title")\n    {\n        var vartitle = myArray[keyVar];\n    }\n    if (keyVar = "author")\n    {\n        var varauthor = myArray[keyVar];\n    }\n//  kcontext.setVariable(keyVar, myArray[keyVar]);\n}\n\n]]></bpmn2:documentation>
+      <bpmn2:incoming>_C9860C92-A7B7-4296-9295-AC9171C6AFF0</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="_lXFo5K_SEeexjfkQxJEKIg"/>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="_470B9BBC-2483-45B3-AF2B-5B2F98814E55" drools:selectable="true" color:background-color="#fafad2" color:border-color="#000000" color:color="#000000" name="T4: Log Response" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T4: Log Response]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_75F82D22-CB18-414C-9AF8-351711DCBFDB</bpmn2:incoming>
+      <bpmn2:outgoing>_BF04E3CF-29A1-4281-9BC9-1E76E5568D72</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Response from the REST WEB Service: " + requestResponse);\n
+System.out.println("JSON String: " + jsonstring);\n
+System.out.println("http status: " + httpstatus);\n]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_BF04E3CF-29A1-4281-9BC9-1E76E5568D72" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_470B9BBC-2483-45B3-AF2B-5B2F98814E55" targetRef="_3A3903E0-4318-4DED-ACB0-FBE5BAD020FF"/>
+    <bpmn2:scriptTask id="_3A3903E0-4318-4DED-ACB0-FBE5BAD020FF" drools:selectable="true" color:background-color="#fafad2" color:border-color="#000000" color:color="#000000" name="T5: Write Variables" scriptFormat="http://www.javascript.com/javascript">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T5: Write Variables]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_BF04E3CF-29A1-4281-9BC9-1E76E5568D72</bpmn2:incoming>
+      <bpmn2:outgoing>_C9860C92-A7B7-4296-9295-AC9171C6AFF0</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[var obj = {"firstName":"bob","lastName":"jones"};
+var jsontmp = JSON.stringify(obj);
+var parsedJSONtmp = JSON.parse(jsontmp);
+var varFirstName = parsedJSONtmp.firstName;
+var varLastName = parsedJSONtmp.lastName;
+kcontext.setVariable("firstName", varFirstName);
+kcontext.setVariable("lastName", varLastName);]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_C9860C92-A7B7-4296-9295-AC9171C6AFF0" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_3A3903E0-4318-4DED-ACB0-FBE5BAD020FF" targetRef="_10762D76-EEAC-448F-A761-F1BA7E3E9EF4"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_lXGP0K_SEeexjfkQxJEKIg">
+    <bpmndi:BPMNPlane id="_lXGP0a_SEeexjfkQxJEKIg" bpmnElement="PhilREST.hello-rest-task-service">
+      <bpmndi:BPMNShape id="_lXGP0q_SEeexjfkQxJEKIg" bpmnElement="_2C888654-FBD8-455E-90AB-F290DC03187A">
+        <dc:Bounds height="30.0" width="30.0" x="60.0" y="167.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_lXGP06_SEeexjfkQxJEKIg" bpmnElement="_77387FD6-006D-4A69-BC30-1F47775867B3">
+        <dc:Bounds height="85.0" width="152.0" x="525.0" y="133.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_lXGP1K_SEeexjfkQxJEKIg" bpmnElement="_C526B286-BB8F-412D-8257-2910C7A22A30">
+        <dc:Bounds height="90.0" width="162.0" x="105.0" y="135.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_lXGP1a_SEeexjfkQxJEKIg" bpmnElement="_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985">
+        <dc:Bounds height="81.0" width="152.0" x="315.0" y="135.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_lXGP1q_SEeexjfkQxJEKIg" bpmnElement="_10762D76-EEAC-448F-A761-F1BA7E3E9EF4">
+        <dc:Bounds height="28.0" width="28.0" x="930.0" y="161.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_lXGP16_SEeexjfkQxJEKIg" bpmnElement="_470B9BBC-2483-45B3-AF2B-5B2F98814E55">
+        <dc:Bounds height="80.0" width="100.0" x="780.0" y="135.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_lXGP2K_SEeexjfkQxJEKIg" bpmnElement="_3A3903E0-4318-4DED-ACB0-FBE5BAD020FF">
+        <dc:Bounds height="80.0" width="100.0" x="780.0" y="285.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_lXGP2a_SEeexjfkQxJEKIg" bpmnElement="_43FDA188-C8B4-48C6-8754-E357223642EA" sourceElement="_lXGP0q_SEeexjfkQxJEKIg" targetElement="_lXGP1K_SEeexjfkQxJEKIg">
+        <di:waypoint xsi:type="dc:Point" x="75.0" y="182.0"/>
+        <di:waypoint xsi:type="dc:Point" x="186.0" y="180.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_lXGP2q_SEeexjfkQxJEKIg" bpmnElement="_B351951A-5E14-43FB-BC8D-595F2308CF21" sourceElement="_lXGP1K_SEeexjfkQxJEKIg" targetElement="_lXGP1a_SEeexjfkQxJEKIg">
+        <di:waypoint xsi:type="dc:Point" x="186.0" y="180.0"/>
+        <di:waypoint xsi:type="dc:Point" x="391.0" y="175.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_lXGP26_SEeexjfkQxJEKIg" bpmnElement="_C36001A6-CCCE-4F2B-8517-A29804E61053" sourceElement="_lXGP1a_SEeexjfkQxJEKIg" targetElement="_lXGP06_SEeexjfkQxJEKIg">
+        <di:waypoint xsi:type="dc:Point" x="391.0" y="175.5"/>
+        <di:waypoint xsi:type="dc:Point" x="601.0" y="175.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_lXGP3K_SEeexjfkQxJEKIg" bpmnElement="_75F82D22-CB18-414C-9AF8-351711DCBFDB" sourceElement="_lXGP06_SEeexjfkQxJEKIg" targetElement="_lXGP16_SEeexjfkQxJEKIg">
+        <di:waypoint xsi:type="dc:Point" x="601.0" y="175.5"/>
+        <di:waypoint xsi:type="dc:Point" x="830.0" y="175.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_lXGP3a_SEeexjfkQxJEKIg" bpmnElement="_BF04E3CF-29A1-4281-9BC9-1E76E5568D72" sourceElement="_lXGP16_SEeexjfkQxJEKIg" targetElement="_lXGP2K_SEeexjfkQxJEKIg">
+        <di:waypoint xsi:type="dc:Point" x="830.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="830.0" y="325.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_lXGP3q_SEeexjfkQxJEKIg" bpmnElement="_C9860C92-A7B7-4296-9295-AC9171C6AFF0" sourceElement="_lXGP2K_SEeexjfkQxJEKIg" targetElement="_lXGP1q_SEeexjfkQxJEKIg">
+        <di:waypoint xsi:type="dc:Point" x="830.0" y="325.0"/>
+        <di:waypoint xsi:type="dc:Point" x="944.0" y="175.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship id="_lXGP36_SEeexjfkQxJEKIg" type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters" baseTimeUnit="min"/>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_43FDA188-C8B4-48C6-8754-E357223642EA" id="_lXGP4K_SEeexjfkQxJEKIg">
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_75F82D22-CB18-414C-9AF8-351711DCBFDB" id="_lXGP4a_SEeexjfkQxJEKIg">
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_77387FD6-006D-4A69-BC30-1F47775867B3" id="_lXGP4q_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_16EFC86D-9BDC-48C9-A41D-36AD2CF0A985" id="_lXGP46_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_B351951A-5E14-43FB-BC8D-595F2308CF21" id="_lXGP5K_SEeexjfkQxJEKIg">
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_470B9BBC-2483-45B3-AF2B-5B2F98814E55" id="_lXGP5a_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_2C888654-FBD8-455E-90AB-F290DC03187A" id="_lXGP5q_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_C526B286-BB8F-412D-8257-2910C7A22A30" id="_lXGP56_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_C9860C92-A7B7-4296-9295-AC9171C6AFF0" id="_lXGP6K_SEeexjfkQxJEKIg">
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_10762D76-EEAC-448F-A761-F1BA7E3E9EF4" id="_lXGP6a_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_3A3903E0-4318-4DED-ACB0-FBE5BAD020FF" id="_lXGP6q_SEeexjfkQxJEKIg">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:UniformDistribution max="10.0" min="5.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_C36001A6-CCCE-4F2B-8517-A29804E61053" id="_lXGP66_SEeexjfkQxJEKIg">
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_BF04E3CF-29A1-4281-9BC9-1E76E5568D72" id="_lXGP7K_SEeexjfkQxJEKIg">
+            <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
+              <bpsim:Probability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="100.0"/>
+              </bpsim:Probability>
+            </bpsim:ControlParameters>
+          </bpsim:ElementParameters>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_lXFowK_SEeexjfkQxJEKIg</bpmn2:source>
+    <bpmn2:target>_lXFowK_SEeexjfkQxJEKIg</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>
