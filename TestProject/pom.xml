@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Andre</groupId>
   <artifactId>TestProject</artifactId>
-  <version>1.2</version>
+  <version>1.3</version>
   <packaging>kjar</packaging>
   <name>TestProject</name>
   <repositories>
